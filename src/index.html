@@ -6,29 +6,36 @@
     <title>Stencil Component Starter</title>
 
     <script type="module" src="/build/stencil-component-library.esm.js"></script>
-    <script nomodule src="/build/stencil-component-library.js"></script>
   </head>
   <body>
     <hw-tabs>
-      <hw-tab-list>
-        <hw-tab>Tab 1</hw-tab>
-        <hw-tab>Tab 2</hw-tab>
-        <hw-tab>Tab 3</hw-tab>
-      </hw-tab-list>
-      <hw-tab-panels>
-        <hw-tab-panel
-          >Content
-          <h3>1</h3></hw-tab-panel
-        >
-        <hw-tab-panel
-          >Content
-          <h3>2</h3></hw-tab-panel
-        >
-        <hw-tab-panel
-          >Content
-          <h3>3</h3></hw-tab-panel
-        >
-      </hw-tab-panels>
+      <hw-tab value="ONE"><button>Tab 1</button></hw-tab>
+      <hw-tab-panel
+        >Lorem <a href="https://www.loremipsum.de/">ipsum dolor</a> sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+        erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
+        ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</hw-tab-panel
+      >
+      <hw-tab value="TWO">Tab 2</hw-tab>
+      <hw-tab-panel>
+        <h4>Lorem</h4>
+        ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+      </hw-tab-panel>
+      <hw-tab value="THREE" selected>Tab 3</hw-tab>
+      <hw-tab-panel>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+        accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+        sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+        rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+        tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+        takimata sanctus est Lorem ipsum dolor sit amet.
+      </hw-tab-panel>
     </hw-tabs>
+
+    <br />
+    <script>
+      document.addEventListener('change', event => console.log('value from event:', event.detail.value, 'value from element:', document.querySelector('hw-tabs').value));
+    </script>
   </body>
 </html>

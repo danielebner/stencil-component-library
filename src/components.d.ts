@@ -7,6 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface HwTabs {
+        "value": any;
     }
     interface MyComponent {
         /**
@@ -22,6 +23,10 @@ export namespace Components {
          */
         "middle": string;
     }
+}
+export interface HwTabsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLHwTabsElement;
 }
 declare global {
     interface HTMLHwTabsElement extends Components.HwTabs, HTMLStencilElement {
@@ -43,6 +48,8 @@ declare global {
 }
 declare namespace LocalJSX {
     interface HwTabs {
+        "onChange"?: (event: HwTabsCustomEvent<any>) => void;
+        "value"?: any;
     }
     interface MyComponent {
         /**
