@@ -8,7 +8,7 @@ type HwChangeEvent = {
 @Component({
   tag: 'hw-tabs',
   styleUrl: 'hw-tabs.css',
-  shadow: true,
+  shadow: false,
 })
 export class HwTabs implements ComponentInterface {
   @Element() el: HTMLElement;
@@ -21,15 +21,15 @@ export class HwTabs implements ComponentInterface {
   })
   change: EventEmitter;
 
-  @State() tabs: Array<any> = [];
-  @State() tabPanels: Array<any> = [];
-  @State() indexSelected = 0;
-
   @Prop({
     mutable: true,
     reflect: true,
   })
   value;
+
+  @State() tabs: Array<any> = [];
+  @State() tabPanels: Array<any> = [];
+  @State() indexSelected = 0;
 
   changeHandler(hwChangeEvent: HwChangeEvent) {
     this.change.emit(hwChangeEvent);
@@ -39,8 +39,9 @@ export class HwTabs implements ComponentInterface {
     this.tabs = getElements(this.el, 'hw-tab');
     this.indexSelected = this.tabs.findIndex(tab => tab.getAttribute('selected') !== null);
     this.tabPanels = getElements(this.el, 'hw-tab-panel');
-    // Remove ChildNodes
+    this.el.innerHTML = '';
   }
+
   render() {
     return (
       <Host>
@@ -49,9 +50,16 @@ export class HwTabs implements ComponentInterface {
           const element: any = childNode as any;
           const TagName: string = isTextNode(childNode) ? 'button' : element.tagName;
           const inner = isTextNode(childNode) ? tab.innerHTML : element.innerHTML;
+          const attributes = Array.from(tab.attributes);
+          var filteredAttributes = attributes.filter(attribute => attribute.name !== 'value' && attribute.name !== 'selected');
+          const attributesObject = filteredAttributes.reduce((result, attribute) => {
+            result[attribute.name] = attribute.value;
+            return result;
+          }, {});
+
           return (
             <TagName
-              // TODO Copy all Attributes
+              {...attributesObject}
               data-index={index}
               data-value={tab.getAttribute('value')}
               onClick={event => {
