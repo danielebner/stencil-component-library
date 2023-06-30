@@ -24,6 +24,7 @@ export class Tab implements ComponentInterface {
   })
   tabClicked: EventEmitter;
 
+  //initialize first  selected Panel
   connectedCallback() {
     if (this.isSelected()) {
       this.handleClicked();
@@ -32,7 +33,7 @@ export class Tab implements ComponentInterface {
 
   @Listen('tabsChanged', { target: 'document' })
   handleTabClicked(event: CustomEvent) {
-    this.handleSelected(event.detail.index);
+    this.handleSelection(event.detail.index);
   }
 
   getIndex() {
@@ -41,7 +42,7 @@ export class Tab implements ComponentInterface {
     return index;
   }
 
-  handleSelected(clickedIndex) {
+  handleSelection(clickedIndex) {
     if (clickedIndex === this.getIndex()) {
       this.selected = '';
     } else {
@@ -54,11 +55,11 @@ export class Tab implements ComponentInterface {
   };
 
   isSelected() {
-    return this.selected === null || this.selected === undefined;
+    return this.selected !== null && this.selected !== undefined;
   }
 
   render() {
-    const style = this.isSelected ? {} : { fontWeight: 'bold' };
+    const style = this.isSelected() ? { fontWeight: 'bold' } : {};
 
     return (
       <Host style={style} onClick={() => this.handleClicked()}>

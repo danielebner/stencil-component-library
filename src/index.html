@@ -8,30 +8,6 @@
     <script type="module" src="/build/stencil-component-library.esm.js"></script>
   </head>
   <body>
-    <pxw-tabs>
-      <pxw-tab value="ONE" id="Abbrechen" class="BOLD" selected><button>Tab 1</button></pxw-tab>
-      <pxw-tab value="TWO" id="SECOND">Tab 2</pxw-tab>
-      <pxw-tab value="THREE" id="THIRD">Tab 3</pxw-tab>
-      <pxw-tab-panel
-        >Lorem <a href="https://www.loremipsum.de/">ipsum dolor</a> sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-        erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-        ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</pxw-tab-panel
-      >
-      <pxw-tab-panel>
-        <h4>Lorem</h4>
-        ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-      </pxw-tab-panel>
-      <pxw-tab-panel>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-        accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-        sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-        rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-        tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-        takimata sanctus est Lorem ipsum dolor sit amet.
-      </pxw-tab-panel>
-    </pxw-tabs>
     <hr />
     <!--hw-tabs>
       <hw-tab value="ONE" id="Abbrechen" class="BOLD"><button>Tab 1</button></hw-tab>
@@ -63,7 +39,30 @@
         <div>Eins</div>
       </pxw-step>
       <pxw-step>
-        <div>Zwei</div>
+        <pxw-tabs>
+          <pxw-tab value="ONE" id="Abbrechen" class="BOLD" selected>Tab 1</pxw-tab>
+          <pxw-tab value="TWO" id="SECOND"><button>Tab 2</button></pxw-tab>
+          <pxw-tab value="THREE" id="THIRD">Tab 3</pxw-tab>
+          <pxw-tab-panel
+            >Lorem <a href="https://www.loremipsum.de/">ipsum dolor</a> sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+            aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
+            amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
+            vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</pxw-tab-panel
+          >
+          <pxw-tab-panel>
+            <h4>Lorem</h4>
+            ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+            accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+          </pxw-tab-panel>
+          <pxw-tab-panel>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos
+            et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+            sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+            rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
+            eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+            no sea takimata sanctus est Lorem ipsum dolor sit amet.
+          </pxw-tab-panel>
+        </pxw-tabs>
       </pxw-step>
       <pxw-step>
         <div>Drei</div>
@@ -76,8 +75,8 @@
       </pxw-step>
     </pxw-steps>
     <hr />
-    <pxw-step-next>Weiter</pxw-step-next>
     <pxw-step-previous>Zurück</pxw-step-previous>
+    <pxw-step-next>Weiter</pxw-step-next>
 
     <!--hw-steps id="IDSTEP">
       <hw-step title="Seite 1" selected>

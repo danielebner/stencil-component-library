@@ -11,17 +11,19 @@ export class TabPanel implements ComponentInterface {
     mutable: true,
     reflect: true,
   })
-  visible = false;
+  selected = false;
 
-  @Listen('tabClicked', { target: 'document' }) @Listen('tabsChanged', { target: 'document' }) tabClicked(event: CustomEvent) {
-    this.handleVisibility(event.detail.index);
+  @Listen('tabClicked', { target: 'document' })
+  // @Listen('tabsChanged', { target: 'document' })
+  tabClicked(event: CustomEvent) {
+    this.handleSelection(event.detail.index);
   }
 
-  handleVisibility(clickedIndex) {
+  handleSelection(clickedIndex) {
     if (clickedIndex === this.getIndex()) {
-      this.visible = true;
+      this.selected = true;
     } else {
-      this.visible = false;
+      this.selected = false;
     }
   }
 
@@ -32,10 +34,10 @@ export class TabPanel implements ComponentInterface {
   }
 
   render() {
-    const visibility = this.visible ? { display: 'block' } : { display: 'none' };
+    const style = this.selected ? { display: 'block' } : { display: 'none' };
 
     return (
-      <Host style={visibility}>
+      <Host style={style}>
         <slot></slot>
       </Host>
     );
