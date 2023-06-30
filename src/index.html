@@ -8,8 +8,33 @@
     <script type="module" src="/build/stencil-component-library.esm.js"></script>
   </head>
   <body>
+    <pxw-tabs>
+      <pxw-tab value="ONE" id="Abbrechen" class="BOLD">Tab 1</pxw-tab>
+      <pxw-tab value="TWO" id="SECOND">Tab 2</pxw-tab>
+      <pxw-tab value="THREE" id="THIRD" selected>Tab 3</pxw-tab>
+      <pxw-tab-panel
+        >Lorem <a href="https://www.loremipsum.de/">ipsum dolor</a> sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+        erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
+        ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</pxw-tab-panel
+      >
+      <pxw-tab-panel>
+        <h4>Lorem</h4>
+        ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+        et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+      </pxw-tab-panel>
+      <pxw-tab-panel>
+        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+        accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+        sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+        rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+        tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+        takimata sanctus est Lorem ipsum dolor sit amet.
+      </pxw-tab-panel>
+    </pxw-tabs>
+    <hr />
     <hw-tabs>
-      <hw-tab value="ONE" id="FIRST" class="BOLD"><button>Tab 1</button></hw-tab>
+      <hw-tab value="ONE" id="Abbrechen" class="BOLD"><button>Tab 1</button></hw-tab>
       <hw-tab-panel
         >Lorem <a href="https://www.loremipsum.de/">ipsum dolor</a> sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
         erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
@@ -33,9 +58,31 @@
       </hw-tab-panel>
     </hw-tabs>
 
-    <br />
-    <script>
-      document.addEventListener('change', event => console.log('value from event:', event.detail.value, 'value from element:', document.querySelector('hw-tabs').value));
-    </script>
+    <hw-steps id="IDSTEP">
+      <hw-step title="Seite 1" selected>
+        <div>Eins</div>
+        <hw-step-next key="a">W</hw-step-next>
+        <hw-step-previous key="aa">Z</hw-step-previous>
+      </hw-step>
+      <hw-step>
+        <div>Zwei</div>
+        <hw-step-next key="b">W</hw-step-next>
+        <hw-step-previous key="bb">Z</hw-step-previous>
+      </hw-step>
+      <hw-step>
+        <div>Drei</div>
+        <hw-step-next key="c">W</hw-step-next>
+        <hw-step-previous key="cc">Z</hw-step-previous>
+      </hw-step>
+      <hw-step>
+        <div>Vier</div>
+        <hw-step-next key="d">W</hw-step-next>
+        <hw-step-previous key="dd">Z</hw-step-previous>
+      </hw-step>
+      <hw-step>
+        <div>Fünf</div>
+        <hw-step-previous key="ee">Z</hw-step-previous>
+      </hw-step>
+    </hw-steps>
   </body>
 </html>

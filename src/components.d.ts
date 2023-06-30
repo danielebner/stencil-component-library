@@ -6,6 +6,14 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface HwStepFirst {
+    }
+    interface HwStepNext {
+    }
+    interface HwStepPrevious {
+    }
+    interface HwSteps {
+    }
     interface HwTabs {
         "value": any;
     }
@@ -23,12 +31,60 @@ export namespace Components {
          */
         "middle": string;
     }
+    interface PxwTab {
+    }
+    interface PxwTabPanel {
+        "visible": boolean;
+    }
+    interface PxwTabs {
+        "value": any;
+    }
+}
+export interface HwStepFirstCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLHwStepFirstElement;
+}
+export interface HwStepNextCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLHwStepNextElement;
+}
+export interface HwStepPreviousCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLHwStepPreviousElement;
 }
 export interface HwTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLHwTabsElement;
 }
+export interface PxwTabsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPxwTabsElement;
+}
 declare global {
+    interface HTMLHwStepFirstElement extends Components.HwStepFirst, HTMLStencilElement {
+    }
+    var HTMLHwStepFirstElement: {
+        prototype: HTMLHwStepFirstElement;
+        new (): HTMLHwStepFirstElement;
+    };
+    interface HTMLHwStepNextElement extends Components.HwStepNext, HTMLStencilElement {
+    }
+    var HTMLHwStepNextElement: {
+        prototype: HTMLHwStepNextElement;
+        new (): HTMLHwStepNextElement;
+    };
+    interface HTMLHwStepPreviousElement extends Components.HwStepPrevious, HTMLStencilElement {
+    }
+    var HTMLHwStepPreviousElement: {
+        prototype: HTMLHwStepPreviousElement;
+        new (): HTMLHwStepPreviousElement;
+    };
+    interface HTMLHwStepsElement extends Components.HwSteps, HTMLStencilElement {
+    }
+    var HTMLHwStepsElement: {
+        prototype: HTMLHwStepsElement;
+        new (): HTMLHwStepsElement;
+    };
     interface HTMLHwTabsElement extends Components.HwTabs, HTMLStencilElement {
     }
     var HTMLHwTabsElement: {
@@ -41,12 +97,48 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLPxwTabElement extends Components.PxwTab, HTMLStencilElement {
+    }
+    var HTMLPxwTabElement: {
+        prototype: HTMLPxwTabElement;
+        new (): HTMLPxwTabElement;
+    };
+    interface HTMLPxwTabPanelElement extends Components.PxwTabPanel, HTMLStencilElement {
+    }
+    var HTMLPxwTabPanelElement: {
+        prototype: HTMLPxwTabPanelElement;
+        new (): HTMLPxwTabPanelElement;
+    };
+    interface HTMLPxwTabsElement extends Components.PxwTabs, HTMLStencilElement {
+    }
+    var HTMLPxwTabsElement: {
+        prototype: HTMLPxwTabsElement;
+        new (): HTMLPxwTabsElement;
+    };
     interface HTMLElementTagNameMap {
+        "hw-step-first": HTMLHwStepFirstElement;
+        "hw-step-next": HTMLHwStepNextElement;
+        "hw-step-previous": HTMLHwStepPreviousElement;
+        "hw-steps": HTMLHwStepsElement;
         "hw-tabs": HTMLHwTabsElement;
         "my-component": HTMLMyComponentElement;
+        "pxw-tab": HTMLPxwTabElement;
+        "pxw-tab-panel": HTMLPxwTabPanelElement;
+        "pxw-tabs": HTMLPxwTabsElement;
     }
 }
 declare namespace LocalJSX {
+    interface HwStepFirst {
+        "onHwTriggerFirstStep"?: (event: HwStepFirstCustomEvent<any>) => void;
+    }
+    interface HwStepNext {
+        "onHwTriggerNextStep"?: (event: HwStepNextCustomEvent<any>) => void;
+    }
+    interface HwStepPrevious {
+        "onHwTriggerPreviousStep"?: (event: HwStepPreviousCustomEvent<any>) => void;
+    }
+    interface HwSteps {
+    }
     interface HwTabs {
         "onChange"?: (event: HwTabsCustomEvent<any>) => void;
         "value"?: any;
@@ -65,17 +157,40 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
+    interface PxwTab {
+    }
+    interface PxwTabPanel {
+        "visible"?: boolean;
+    }
+    interface PxwTabs {
+        "onTabClicked"?: (event: PxwTabsCustomEvent<any>) => void;
+        "value"?: any;
+    }
     interface IntrinsicElements {
+        "hw-step-first": HwStepFirst;
+        "hw-step-next": HwStepNext;
+        "hw-step-previous": HwStepPrevious;
+        "hw-steps": HwSteps;
         "hw-tabs": HwTabs;
         "my-component": MyComponent;
+        "pxw-tab": PxwTab;
+        "pxw-tab-panel": PxwTabPanel;
+        "pxw-tabs": PxwTabs;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "hw-step-first": LocalJSX.HwStepFirst & JSXBase.HTMLAttributes<HTMLHwStepFirstElement>;
+            "hw-step-next": LocalJSX.HwStepNext & JSXBase.HTMLAttributes<HTMLHwStepNextElement>;
+            "hw-step-previous": LocalJSX.HwStepPrevious & JSXBase.HTMLAttributes<HTMLHwStepPreviousElement>;
+            "hw-steps": LocalJSX.HwSteps & JSXBase.HTMLAttributes<HTMLHwStepsElement>;
             "hw-tabs": LocalJSX.HwTabs & JSXBase.HTMLAttributes<HTMLHwTabsElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "pxw-tab": LocalJSX.PxwTab & JSXBase.HTMLAttributes<HTMLPxwTabElement>;
+            "pxw-tab-panel": LocalJSX.PxwTabPanel & JSXBase.HTMLAttributes<HTMLPxwTabPanelElement>;
+            "pxw-tabs": LocalJSX.PxwTabs & JSXBase.HTMLAttributes<HTMLPxwTabsElement>;
         }
     }
 }
