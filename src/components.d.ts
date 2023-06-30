@@ -32,6 +32,7 @@ export namespace Components {
         "middle": string;
     }
     interface PxwTab {
+        "selected": any;
     }
     interface PxwTabPanel {
         "visible": boolean;
@@ -158,6 +159,7 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface PxwTab {
+        "selected"?: any;
     }
     interface PxwTabPanel {
         "visible"?: boolean;
