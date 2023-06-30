@@ -31,8 +31,14 @@ export namespace Components {
          */
         "middle": string;
     }
+    interface PxwStep {
+        "visible": boolean;
+    }
+    interface PxwSteps {
+    }
     interface PxwTab {
         "selected": any;
+        "value": any;
     }
     interface PxwTabPanel {
         "visible": boolean;
@@ -102,6 +108,18 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLPxwStepElement extends Components.PxwStep, HTMLStencilElement {
+    }
+    var HTMLPxwStepElement: {
+        prototype: HTMLPxwStepElement;
+        new (): HTMLPxwStepElement;
+    };
+    interface HTMLPxwStepsElement extends Components.PxwSteps, HTMLStencilElement {
+    }
+    var HTMLPxwStepsElement: {
+        prototype: HTMLPxwStepsElement;
+        new (): HTMLPxwStepsElement;
+    };
     interface HTMLPxwTabElement extends Components.PxwTab, HTMLStencilElement {
     }
     var HTMLPxwTabElement: {
@@ -127,6 +145,8 @@ declare global {
         "hw-steps": HTMLHwStepsElement;
         "hw-tabs": HTMLHwTabsElement;
         "my-component": HTMLMyComponentElement;
+        "pxw-step": HTMLPxwStepElement;
+        "pxw-steps": HTMLPxwStepsElement;
         "pxw-tab": HTMLPxwTabElement;
         "pxw-tab-panel": HTMLPxwTabPanelElement;
         "pxw-tabs": HTMLPxwTabsElement;
@@ -162,9 +182,15 @@ declare namespace LocalJSX {
          */
         "middle"?: string;
     }
+    interface PxwStep {
+        "visible"?: boolean;
+    }
+    interface PxwSteps {
+    }
     interface PxwTab {
         "onTabClicked"?: (event: PxwTabCustomEvent<any>) => void;
         "selected"?: any;
+        "value"?: any;
     }
     interface PxwTabPanel {
         "visible"?: boolean;
@@ -180,6 +206,8 @@ declare namespace LocalJSX {
         "hw-steps": HwSteps;
         "hw-tabs": HwTabs;
         "my-component": MyComponent;
+        "pxw-step": PxwStep;
+        "pxw-steps": PxwSteps;
         "pxw-tab": PxwTab;
         "pxw-tab-panel": PxwTabPanel;
         "pxw-tabs": PxwTabs;
@@ -195,6 +223,8 @@ declare module "@stencil/core" {
             "hw-steps": LocalJSX.HwSteps & JSXBase.HTMLAttributes<HTMLHwStepsElement>;
             "hw-tabs": LocalJSX.HwTabs & JSXBase.HTMLAttributes<HTMLHwTabsElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "pxw-step": LocalJSX.PxwStep & JSXBase.HTMLAttributes<HTMLPxwStepElement>;
+            "pxw-steps": LocalJSX.PxwSteps & JSXBase.HTMLAttributes<HTMLPxwStepsElement>;
             "pxw-tab": LocalJSX.PxwTab & JSXBase.HTMLAttributes<HTMLPxwTabElement>;
             "pxw-tab-panel": LocalJSX.PxwTabPanel & JSXBase.HTMLAttributes<HTMLPxwTabPanelElement>;
             "pxw-tabs": LocalJSX.PxwTabs & JSXBase.HTMLAttributes<HTMLPxwTabsElement>;

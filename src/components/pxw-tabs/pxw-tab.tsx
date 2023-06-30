@@ -8,6 +8,8 @@ import { getElements } from '../../utils/utils';
 export class Tab implements ComponentInterface {
   @Element() el: HTMLElement;
 
+  @Prop() value;
+
   @Prop({
     mutable: true,
     reflect: true,
@@ -21,6 +23,12 @@ export class Tab implements ComponentInterface {
     bubbles: true,
   })
   tabClicked: EventEmitter;
+
+  connectedCallback() {
+    if (this.isSelected()) {
+      this.handleClicked();
+    }
+  }
 
   @Listen('tabsChanged', { target: 'document' })
   handleTabClicked(event: CustomEvent) {
@@ -42,11 +50,16 @@ export class Tab implements ComponentInterface {
   }
 
   handleClicked = () => {
-    this.tabClicked.emit({ index: this.getIndex() });
+    this.tabClicked.emit({ index: this.getIndex(), value: this.value });
   };
 
+  isSelected() {
+    return this.selected === null || this.selected === undefined;
+  }
+
   render() {
-    const style = this.selected === null || this.selected === undefined ? {} : { color: 'aqua' };
+    const style = this.isSelected ? {} : { fontWeight: 'bold' };
+
     return (
       <Host style={style} onClick={() => this.handleClicked()}>
         <slot></slot>
