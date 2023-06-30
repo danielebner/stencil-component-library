@@ -1,4 +1,4 @@
-import { Component, h, Host, ComponentInterface, Prop, Listen, Element, State } from '@stencil/core';
+import { Component, h, Host, ComponentInterface, Prop, Listen, Element } from '@stencil/core';
 import { getElements } from '../../utils/utils';
 
 @Component({
@@ -13,8 +13,7 @@ export class TabPanel implements ComponentInterface {
   })
   visible = false;
 
-  @Listen('tabClicked', { target: 'document' })
-  tabClicked(event: CustomEvent) {
+  @Listen('tabClicked', { target: 'document' }) @Listen('tabsChanged', { target: 'document' }) tabClicked(event: CustomEvent) {
     this.handleVisibility(event.detail.index);
   }
 

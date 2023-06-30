@@ -57,6 +57,10 @@ export interface HwTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLHwTabsElement;
 }
+export interface PxwTabCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPxwTabElement;
+}
 export interface PxwTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPxwTabsElement;
@@ -159,13 +163,14 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface PxwTab {
+        "onTabClicked"?: (event: PxwTabCustomEvent<any>) => void;
         "selected"?: any;
     }
     interface PxwTabPanel {
         "visible"?: boolean;
     }
     interface PxwTabs {
-        "onTabClicked"?: (event: PxwTabsCustomEvent<any>) => void;
+        "onTabsChanged"?: (event: PxwTabsCustomEvent<any>) => void;
         "value"?: any;
     }
     interface IntrinsicElements {

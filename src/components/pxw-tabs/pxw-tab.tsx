@@ -1,4 +1,4 @@
-import { Component, h, Host, ComponentInterface, Element, Prop, Listen } from '@stencil/core';
+import { Component, h, Host, ComponentInterface, Element, Prop, Event, EventEmitter, Listen } from '@stencil/core';
 import { getElements } from '../../utils/utils';
 
 @Component({
@@ -8,10 +8,22 @@ import { getElements } from '../../utils/utils';
 export class Tab implements ComponentInterface {
   @Element() el: HTMLElement;
 
-  @Prop() selected;
+  @Prop({
+    mutable: true,
+    reflect: true,
+  })
+  selected;
 
-  @Listen('tabClicked', { target: 'document' })
-  tabClicked(event: CustomEvent) {
+  @Event({
+    eventName: 'tabClicked',
+    composed: true,
+    cancelable: true,
+    bubbles: true,
+  })
+  tabClicked: EventEmitter;
+
+  @Listen('tabsChanged', { target: 'document' })
+  handleTabClicked(event: CustomEvent) {
     this.handleSelected(event.detail.index);
   }
 
@@ -22,18 +34,21 @@ export class Tab implements ComponentInterface {
   }
 
   handleSelected(clickedIndex) {
-    console.log('handleSelected', this.getIndex(), clickedIndex);
     if (clickedIndex === this.getIndex()) {
-      this.selected = true;
+      this.selected = '';
     } else {
-      this.selected = undefined;
+      this.selected = null;
     }
   }
 
+  handleClicked = () => {
+    this.tabClicked.emit({ index: this.getIndex() });
+  };
+
   render() {
-    const style = this.selected !== undefined ? { color: 'aqua' } : {};
+    const style = this.selected === null || this.selected === undefined ? {} : { color: 'aqua' };
     return (
-      <Host style={style}>
+      <Host style={style} onClick={() => this.handleClicked()}>
         <slot></slot>
       </Host>
     );

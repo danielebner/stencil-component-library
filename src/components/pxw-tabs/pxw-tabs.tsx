@@ -1,4 +1,4 @@
-import { Component, h, Host, ComponentInterface, Element, State, Event, EventEmitter, Prop } from '@stencil/core';
+import { Component, h, Host, ComponentInterface, Element, State, Event, EventEmitter, Prop, Listen } from '@stencil/core';
 import { getElements } from '../../utils/utils';
 
 @Component({
@@ -9,12 +9,12 @@ export class Tabs implements ComponentInterface {
   @Element() el: HTMLElement;
 
   @Event({
-    eventName: 'tabClicked',
+    eventName: 'tabsChanged',
     composed: true,
     cancelable: true,
     bubbles: true,
   })
-  tabClicked: EventEmitter;
+  tabsChanged: EventEmitter;
 
   @Prop({
     mutable: true,
@@ -28,18 +28,23 @@ export class Tabs implements ComponentInterface {
 
   connectedCallback() {
     this.tabs = getElements(this.el, 'pxw-tab');
+    this.indexSelected = this.tabs.findIndex(tab => tab.getAttribute('selected') !== null);
   }
 
-  clickHandler(event) {
-    const index = this.tabs.findIndex(tab => event.target === tab);
-    this.tabClicked.emit({ index });
-    const tab = this.tabs.find(tab => event.target === tab);
-    this.value = tab.getAttribute('value');
+  @Listen('tabClicked')
+  tabClicked(event) {
+    const { index } = event.detail;
+    if (index !== this.indexSelected) {
+      this.indexSelected = index;
+      const tab = this.tabs[index];
+      this.value = tab.getAttribute('value');
+      this.tabsChanged.emit({ index });
+    }
   }
-
   render() {
     return (
-      <Host onClick={event => this.clickHandler(event)}>
+      <Host>
+        {/* onClick={event => this.clickHandler(event)}> */}
         <slot></slot>
       </Host>
     );
