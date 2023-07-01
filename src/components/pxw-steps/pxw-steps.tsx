@@ -13,18 +13,32 @@ export class Steps implements ComponentInterface {
   @State() count = 0;
 
   @Event({
-    eventName: 'changeStep',
     composed: true,
     cancelable: true,
     bubbles: true,
   })
-  changeStep: EventEmitter;
+  triggerChangeStep: EventEmitter;
+
+  @Event()
+  change: EventEmitter;
+
+  @Listen('change', { target: 'document' })
+  debug(_event: CustomEvent) {
+    console.log('heard');
+  }
+
+  getChangeEvent() {
+    const step = this.steps[this.indexSelected];
+    const title = step.getAttribute('title');
+    return { index: this.indexSelected, title };
+  }
 
   @Listen('triggerLastStep', { target: 'document' })
   triggerLastStep(_event: CustomEvent) {
     if (this.indexSelected + 1 < this.count) {
       this.indexSelected = this.count - 1;
-      this.changeStep.emit({ index: this.indexSelected });
+      this.triggerChangeStep.emit({ index: this.indexSelected });
+      this.change.emit(this.getChangeEvent());
     } else {
       console.error('Already on Last Step');
     }
@@ -34,7 +48,8 @@ export class Steps implements ComponentInterface {
   triggerNextStep(_event: CustomEvent) {
     if (this.indexSelected + 1 < this.count) {
       this.indexSelected++;
-      this.changeStep.emit({ index: this.indexSelected });
+      this.triggerChangeStep.emit({ index: this.indexSelected });
+      this.change.emit(this.getChangeEvent());
     } else {
       console.error('No next step');
     }
@@ -44,7 +59,8 @@ export class Steps implements ComponentInterface {
   triggerPreviousStep(_event: CustomEvent) {
     if (this.indexSelected > 0) {
       this.indexSelected--;
-      this.changeStep.emit({ index: this.indexSelected });
+      this.triggerChangeStep.emit({ index: this.indexSelected });
+      this.change.emit(this.getChangeEvent());
     } else {
       console.error('No previous step');
     }
@@ -54,7 +70,8 @@ export class Steps implements ComponentInterface {
   triggerPreviousFirst(_event: CustomEvent) {
     if (this.indexSelected > 0) {
       this.indexSelected = 0;
-      this.changeStep.emit({ index: 0 });
+      this.triggerChangeStep.emit({ index: 0 });
+      this.change.emit(this.getChangeEvent());
     } else {
       console.error('Already on step 0');
     }

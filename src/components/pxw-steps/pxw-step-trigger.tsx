@@ -10,7 +10,6 @@ export class StepTrigger implements ComponentInterface {
   @Prop() action: 'first' | 'previous' | 'next' | 'last';
 
   @Event({
-    eventName: 'triggerFirstStep',
     composed: true,
     cancelable: true,
     bubbles: true,
@@ -18,7 +17,6 @@ export class StepTrigger implements ComponentInterface {
   triggerFirstStep: EventEmitter;
 
   @Event({
-    eventName: 'triggerPreviousStep',
     composed: true,
     cancelable: true,
     bubbles: true,
@@ -26,7 +24,6 @@ export class StepTrigger implements ComponentInterface {
   triggerPreviousStep: EventEmitter;
 
   @Event({
-    eventName: 'triggerNextStep',
     composed: true,
     cancelable: true,
     bubbles: true,
@@ -34,7 +31,6 @@ export class StepTrigger implements ComponentInterface {
   triggerNextStep: EventEmitter;
 
   @Event({
-    eventName: 'triggerLastStep',
     composed: true,
     cancelable: true,
     bubbles: true,

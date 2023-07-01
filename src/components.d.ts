@@ -211,7 +211,8 @@ declare namespace LocalJSX {
         "onTriggerPreviousStep"?: (event: PxwStepTriggerCustomEvent<any>) => void;
     }
     interface PxwSteps {
-        "onChangeStep"?: (event: PxwStepsCustomEvent<any>) => void;
+        "onChange"?: (event: PxwStepsCustomEvent<any>) => void;
+        "onTriggerChangeStep"?: (event: PxwStepsCustomEvent<any>) => void;
     }
     interface PxwTab {
         "onTabClicked"?: (event: PxwTabCustomEvent<any>) => void;

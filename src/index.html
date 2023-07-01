@@ -6,6 +6,11 @@
     <title>Stencil Component Starter</title>
 
     <script type="module" src="/build/stencil-component-library.esm.js"></script>
+    <script>
+      function log() {
+        console.log('Steps changed to');
+      }
+    </script>
   </head>
   <body>
     <hr />
@@ -34,12 +39,12 @@
       </hw-tab-panel>
     </hw-tabs-->
 
-    <pxw-steps id="IDSTEP">
-      <pxw-step title="Seite 1" selected>
+    <pxw-steps onChange="log()" id="IDSTEP">
+      <pxw-step title="Seite mit Bild" selected>
         <div>Eins</div>
         <img src="https://picsum.photos/800/600" />
       </pxw-step>
-      <pxw-step>
+      <pxw-step title="Seite mit Tabs">
         <pxw-tabs>
           <pxw-tab value="ONE" id="Abbrechen" class="BOLD" selected>Tab 1</pxw-tab>
           <pxw-tab value="TWO" id="SECOND"><button>Tab 2</button></pxw-tab>
@@ -65,10 +70,10 @@
           </pxw-tab-panel>
         </pxw-tabs>
       </pxw-step>
-      <pxw-step>
+      <pxw-step title="Seite 3">
         <div>Drei</div>
       </pxw-step>
-      <pxw-step>
+      <pxw-step title="Seite  4">
         <div>Vier</div>
       </pxw-step>
       <pxw-step>

@@ -14,7 +14,7 @@ export class Steps implements ComponentInterface {
   })
   selected;
 
-  @Listen('changeStep', { target: 'document' })
+  @Listen('triggerChangeStep', { target: 'document' })
   changeStep(event: CustomEvent) {
     this.handleSelection(event.detail.index);
   }
@@ -39,8 +39,6 @@ export class Steps implements ComponentInterface {
 
   render() {
     const style = this.isSelected() ? {} : { display: 'none' };
-
-    console.log('Step', style, this.isSelected());
     return (
       <Host style={style}>
         <slot></slot>
