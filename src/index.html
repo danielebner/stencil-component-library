@@ -37,6 +37,7 @@
     <pxw-steps id="IDSTEP">
       <pxw-step title="Seite 1" selected>
         <div>Eins</div>
+        <img src="https://picsum.photos/800/600" />
       </pxw-step>
       <pxw-step>
         <pxw-tabs>
@@ -75,9 +76,10 @@
       </pxw-step>
     </pxw-steps>
     <hr />
-    <pxw-step-previous>Zurück</pxw-step-previous>
-    <pxw-step-next>Weiter</pxw-step-next>
-
+    <pxw-step-trigger action="first"><button>&lt;&lt;</button></pxw-step-trigger>
+    <pxw-step-trigger action="previous"><button>&lt;</button></pxw-step-trigger>
+    <pxw-step-trigger action="next"><button>&gt;</button></pxw-step-trigger>
+    <pxw-step-trigger action="last"><button>&gt;&gt;</button></pxw-step-trigger>
     <!--hw-steps id="IDSTEP">
       <hw-step title="Seite 1" selected>
         <div>Eins</div>

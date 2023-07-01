@@ -34,7 +34,8 @@ export namespace Components {
     interface PxwStep {
         "selected": any;
     }
-    interface PxwStepNext {
+    interface PxwStepTrigger {
+        "action": 'first' | 'previous' | 'next' | 'last';
     }
     interface PxwSteps {
     }
@@ -65,9 +66,9 @@ export interface HwTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLHwTabsElement;
 }
-export interface PxwStepNextCustomEvent<T> extends CustomEvent<T> {
+export interface PxwStepTriggerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLPxwStepNextElement;
+    target: HTMLPxwStepTriggerElement;
 }
 export interface PxwStepsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -124,11 +125,11 @@ declare global {
         prototype: HTMLPxwStepElement;
         new (): HTMLPxwStepElement;
     };
-    interface HTMLPxwStepNextElement extends Components.PxwStepNext, HTMLStencilElement {
+    interface HTMLPxwStepTriggerElement extends Components.PxwStepTrigger, HTMLStencilElement {
     }
-    var HTMLPxwStepNextElement: {
-        prototype: HTMLPxwStepNextElement;
-        new (): HTMLPxwStepNextElement;
+    var HTMLPxwStepTriggerElement: {
+        prototype: HTMLPxwStepTriggerElement;
+        new (): HTMLPxwStepTriggerElement;
     };
     interface HTMLPxwStepsElement extends Components.PxwSteps, HTMLStencilElement {
     }
@@ -162,7 +163,7 @@ declare global {
         "hw-tabs": HTMLHwTabsElement;
         "my-component": HTMLMyComponentElement;
         "pxw-step": HTMLPxwStepElement;
-        "pxw-step-next": HTMLPxwStepNextElement;
+        "pxw-step-trigger": HTMLPxwStepTriggerElement;
         "pxw-steps": HTMLPxwStepsElement;
         "pxw-tab": HTMLPxwTabElement;
         "pxw-tab-panel": HTMLPxwTabPanelElement;
@@ -202,8 +203,12 @@ declare namespace LocalJSX {
     interface PxwStep {
         "selected"?: any;
     }
-    interface PxwStepNext {
-        "onTriggerNextStep"?: (event: PxwStepNextCustomEvent<any>) => void;
+    interface PxwStepTrigger {
+        "action"?: 'first' | 'previous' | 'next' | 'last';
+        "onTriggerFirstStep"?: (event: PxwStepTriggerCustomEvent<any>) => void;
+        "onTriggerLastStep"?: (event: PxwStepTriggerCustomEvent<any>) => void;
+        "onTriggerNextStep"?: (event: PxwStepTriggerCustomEvent<any>) => void;
+        "onTriggerPreviousStep"?: (event: PxwStepTriggerCustomEvent<any>) => void;
     }
     interface PxwSteps {
         "onChangeStep"?: (event: PxwStepsCustomEvent<any>) => void;
@@ -228,7 +233,7 @@ declare namespace LocalJSX {
         "hw-tabs": HwTabs;
         "my-component": MyComponent;
         "pxw-step": PxwStep;
-        "pxw-step-next": PxwStepNext;
+        "pxw-step-trigger": PxwStepTrigger;
         "pxw-steps": PxwSteps;
         "pxw-tab": PxwTab;
         "pxw-tab-panel": PxwTabPanel;
@@ -246,7 +251,7 @@ declare module "@stencil/core" {
             "hw-tabs": LocalJSX.HwTabs & JSXBase.HTMLAttributes<HTMLHwTabsElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
             "pxw-step": LocalJSX.PxwStep & JSXBase.HTMLAttributes<HTMLPxwStepElement>;
-            "pxw-step-next": LocalJSX.PxwStepNext & JSXBase.HTMLAttributes<HTMLPxwStepNextElement>;
+            "pxw-step-trigger": LocalJSX.PxwStepTrigger & JSXBase.HTMLAttributes<HTMLPxwStepTriggerElement>;
             "pxw-steps": LocalJSX.PxwSteps & JSXBase.HTMLAttributes<HTMLPxwStepsElement>;
             "pxw-tab": LocalJSX.PxwTab & JSXBase.HTMLAttributes<HTMLPxwTabElement>;
             "pxw-tab-panel": LocalJSX.PxwTabPanel & JSXBase.HTMLAttributes<HTMLPxwTabPanelElement>;

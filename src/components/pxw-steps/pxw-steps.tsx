@@ -1,6 +1,5 @@
 import { Component, h, Host, ComponentInterface, Listen, State, Element, Event, EventEmitter } from '@stencil/core';
 import { getElements } from '../../utils/utils';
-import { emit } from 'process';
 
 @Component({
   tag: 'pxw-steps',
@@ -21,14 +20,43 @@ export class Steps implements ComponentInterface {
   })
   changeStep: EventEmitter;
 
+  @Listen('triggerLastStep', { target: 'document' })
+  triggerLastStep(_event: CustomEvent) {
+    if (this.indexSelected + 1 < this.count) {
+      this.indexSelected = this.count - 1;
+      this.changeStep.emit({ index: this.indexSelected });
+    } else {
+      console.error('Already on Last Step');
+    }
+  }
+
   @Listen('triggerNextStep', { target: 'document' })
   triggerNextStep(_event: CustomEvent) {
     if (this.indexSelected + 1 < this.count) {
-      console.log('...steps listened to triggerNextStep, will fire changeStep');
       this.indexSelected++;
       this.changeStep.emit({ index: this.indexSelected });
     } else {
       console.error('No next step');
+    }
+  }
+
+  @Listen('triggerPreviousStep', { target: 'document' })
+  triggerPreviousStep(_event: CustomEvent) {
+    if (this.indexSelected > 0) {
+      this.indexSelected--;
+      this.changeStep.emit({ index: this.indexSelected });
+    } else {
+      console.error('No previous step');
+    }
+  }
+
+  @Listen('triggerFirstStep', { target: 'document' })
+  triggerPreviousFirst(_event: CustomEvent) {
+    if (this.indexSelected > 0) {
+      this.indexSelected = 0;
+      this.changeStep.emit({ index: 0 });
+    } else {
+      console.error('Already on step 0');
     }
   }
 

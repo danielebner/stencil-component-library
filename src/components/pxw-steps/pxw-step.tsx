@@ -16,7 +16,6 @@ export class Steps implements ComponentInterface {
 
   @Listen('changeStep', { target: 'document' })
   changeStep(event: CustomEvent) {
-    console.log('Listened to changeSTep', event.detail.index);
     this.handleSelection(event.detail.index);
   }
 
